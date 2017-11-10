@@ -14,8 +14,10 @@ public class Main {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) throws Exception{
-		//создание цепи потоков с потоком вывода объекта в конце
+	public static void main(String[] args) {
+		try {
+			
+
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Vvedite CPU: ");
 		double cpu = scan.nextDouble();
@@ -24,6 +26,7 @@ public class Main {
 		System.out.println("Vvedite Video Card: ");
 		double videoCard = scan.nextDouble();
 		scan.close();
+		
 		
 		Comp compik = new Comp(cpu, memory, videoCard);
 		//создание цепи потоков с потоком вывода объекта в конце
@@ -37,7 +40,14 @@ public class Main {
 		System.out.println(computer.toString());
 		in.close();
 
-
+		} catch (ClassNotFoundException ex) {
+			System.out.println(ex.getMessage());
+		} catch (FileNotFoundException ex){ //отсутствие файла
+			System.out.println(ex.getMessage());
+		} catch (IOException ex) { //ошибка ввода\вывода
+			System.out.println(ex.getMessage());
+		}
+		
     }
 
 }

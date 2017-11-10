@@ -8,7 +8,7 @@ package com.karpenko;
 import java.io.Serializable;
 public class Comp implements Serializable{
 	/**
-	 * версия сериализации
+	 * версия класса
 	 */
 	private static final long serialVersionUID = 1L;
 	private double cpu;
@@ -48,7 +48,7 @@ public class Comp implements Serializable{
 		this.videoCard=videoCard;
 	}
 	
-	public double perfomance() {
+	public double getPerfomance() {
 		return (cpu / memory + videoCard) * memory;
 	}
 	/* (non-Javadoc)
@@ -57,8 +57,8 @@ public class Comp implements Serializable{
 	@Override
 	public String toString() {
 		return "Cpu = " + cpu + 
-				", Memory =" + memory + 
-				", Video Card =" + videoCard + 
-				", Perfomance=" + perfomance();
+				", Memory = " + memory + 
+				", Video Card = " + videoCard + 
+				", Perfomance = " + getPerfomance();
 	}
 }
