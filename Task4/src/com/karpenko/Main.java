@@ -1,0 +1,57 @@
+
+package com.karpenko;
+
+/**
+ * @author Nestea
+ *
+ */
+
+import java.io.*;
+import java.util.Scanner; 
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		try {
+			
+
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Vvedite CPU: ");
+		double cpu = scan.nextDouble();
+		System.out.println("Vvedite Memory: ");
+		double memory = scan.nextDouble();
+		System.out.println("Vvedite Video Card: ");
+		double videoCard = scan.nextDouble();
+		scan.close();
+		
+		
+		Comp compik = new Comp(cpu, memory, videoCard);
+		//создание цепи потоков с потоком вывода объекта в конце
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("file1.txt"));
+	    out.writeObject(compik);
+		out.flush();
+		out.close();
+		
+		ObjectInputStream in =  new ObjectInputStream (new FileInputStream("file1.txt"));
+		Comp computer = (Comp)in.readObject();
+		System.out.println(computer.toString());
+		in.close();
+
+		} catch (PerfomanceException ex) {
+			System.out.println(ex.getMessage());
+			System.out.println(ex.getNumber());
+		} catch (ClassNotFoundException ex) {
+			System.out.println(ex.getMessage());
+		} catch (FileNotFoundException ex){ //отсутствие файла
+			System.out.println(ex.getMessage());
+		} catch (IOException ex) { //ошибка ввода\вывода
+			System.out.println(ex.getMessage());
+		}
+		
+    }
+
+}
+
